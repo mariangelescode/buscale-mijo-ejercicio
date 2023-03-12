@@ -1,15 +1,40 @@
 import { useState } from 'react'
-import Table from './components/Table'
+import SearchBar from './components/SearchBar/SearchBar';
+import Table from './components/Table/Table'
 import getPeople from './utils/getPeople'
 
 const users = getPeople();
 
 function App() {
 
+  // const [searchBar, setSearchBar] = useState({
+  //   search : '',
+  // })
+
+  const [usersFilter, setUsersFilter] = useState(users);
+
+
+
+
+  let handleGetValue = ( event ) => {
+    const {name, value} = event.target   
+    // setSearchBar({[name]:value})
+    // console.log(searchBar)
+    console.log(usersFilter.filter(element => element.firstName))
+    console.log(usersFilter.filter(element => element.firstName.includes(''+value+'')))
+    setUsersFilter(usersFilter.filter(element => element.firstName.toLowerCase().includes(''+value+'')));
+    if(!value){
+      setUsersFilter(users);
+    }
+
+  }
+
+
   return (
     <>
+    <SearchBar name={'search'} type={'type'} handleGetValue={handleGetValue}/>
     <Table>
-      {users.map((user,i)=>{
+      {usersFilter.map((user,i)=>{
         const isEven = i%2===0
         return (
           <>
