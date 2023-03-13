@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Title from './components/Title/Title';
 import SearchBar from './components/SearchBar/SearchBar';
 import Table from './components/Table/Table'
 import getPeople from './utils/getPeople'
@@ -17,12 +18,12 @@ function App() {
 
 
   let handleGetValue = ( event ) => {
-    const {name, value} = event.target   
+    const { value } = event.target
     // setSearchBar({[name]:value})
     // console.log(searchBar)
-    console.log(usersFilter.filter(element => element.firstName))
-    console.log(usersFilter.filter(element => element.firstName.includes(''+value+'')))
-    setUsersFilter(usersFilter.filter(element => element.firstName.toLowerCase().includes(''+value+'')));
+    // console.log(usersFilter.filter(element => element.firstName))
+    // console.log(usersFilter.filter(element => element.firstName.includes(''+value+'')))
+    setUsersFilter(usersFilter.filter(element => element.firstName.toLowerCase().includes(''+value.toLowerCase()+'')));
     if(!value){
       setUsersFilter(users);
     }
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <>
+    <Title />
     <SearchBar name={'search'} type={'type'} handleGetValue={handleGetValue}/>
     <Table>
       {usersFilter.map((user,i)=>{
