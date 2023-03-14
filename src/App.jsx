@@ -23,7 +23,15 @@ function App() {
     // console.log(searchBar)
     // console.log(usersFilter.filter(element => element.firstName))
     // console.log(usersFilter.filter(element => element.firstName.includes(''+value+'')))
-    setUsersFilter(usersFilter.filter(element => element.firstName.toLowerCase().includes(''+value.toLowerCase()+'')));
+    const filterTable = usersFilter.filter(element => {
+      const filterName = element.firstName.toLowerCase().includes(''+value.toLowerCase()+'')
+      const filterLastName = element.lastName.toLowerCase().includes(''+value.toLowerCase()+'')
+      const filterEmail = element.email.toLowerCase().includes(''+value.toLowerCase()+'')
+      const filterAmount = element.amount.toLowerCase().includes(''+value.toLowerCase()+'')
+      return filterName || filterLastName || filterEmail || filterAmount
+
+    })
+    setUsersFilter(filterTable);
     if(!value){
       setUsersFilter(users);
     }
