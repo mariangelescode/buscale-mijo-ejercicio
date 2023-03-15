@@ -44,7 +44,13 @@ function App() {
     console.log(regexValue)
 
     const filterTable = usersFilter.filter(element => 
-      element.firstName.match(regexValue)
+      {
+        const filterName = element.firstName.match(regexValue)
+        const filterLastName = element.lastName.match(regexValue)
+        const filterEmail = element.email.match(regexValue)
+        const filterAmount = element.amount.match(regexValue)
+        return filterName || filterLastName || filterEmail || filterAmount
+      }
       // const filterName = element.firstName.toLowerCase().includes(''+value.toLowerCase()+'')
       // const filterLastName = element.lastName.toLowerCase().includes(''+value.toLowerCase()+'')
       // const filterEmail = element.email.toLowerCase().includes(''+value.toLowerCase()+'')
